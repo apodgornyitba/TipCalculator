@@ -1,3 +1,33 @@
 .App {
+    background-color: hsl(185, 41%, 84%);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.MainComponent{
+    width: 400px;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.p {
+    color:  hsl(184, 14%, 56%);
+}
+
+.MyColorsThemes{
+
+color : hsl(172, 67%, 45%)
+        hsl(183, 100%, 15%)
+hsl(186, 14%, 43%)
+hsl(184, 14%, 56%)
+hsl(185, 41%, 84%)
+hsl(189, 41%, 97%)
+hsl(0, 0%, 100%)
 
 }
