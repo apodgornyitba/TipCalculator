@@ -1,6 +1,7 @@
 import './App.css';
 import {Box, Card} from "@mui/material";
 import TipSelector from "./components/TipSelector";
+import TipDisplay from "./components/TipDisplay";
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
                   }}
             >
                 <TipSelector/>
+                <TipDisplay/>
             </Card>
         </div>
     );
