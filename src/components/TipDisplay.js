@@ -1,9 +1,8 @@
 import * as React from "react";
 import {Box, Button, Card} from "@mui/material";
-import TipButton from "./TipButton";
 
 function TipDisplay(props) {
-    const {tipAmount, numberOfPeople, totalAmount, tipPercentage} = props;
+    const {tipAmount, totalAmount} = props;
 
     return (
         <Card
