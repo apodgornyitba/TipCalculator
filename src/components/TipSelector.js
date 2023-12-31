@@ -237,6 +237,10 @@ function TipSelector({handleTipCalculation}) {
                             fontSize: '24px',
                             borderColor: peopleError ? 'red' : '',
                         },
+                        '& .MuiFormHelperText-root':{
+                            font: 'inherit',
+                            margin: '0',
+                        }
                     }}
                     InputProps={{
                         startAdornment: <img alt="Icon of a group of people" src={person}/>
@@ -248,7 +252,7 @@ function TipSelector({handleTipCalculation}) {
                     onFocus={handleFocus}
                     onBlur={handleBlur}
                     error={!!peopleError} // Pass the error state to the TextField
-                    helperText={peopleError ? 'Can\'t be 0.' : null}
+                    helperText={peopleError ? 'Can\'t be zero.' : null}
                 />
             </Box>
         </Box>

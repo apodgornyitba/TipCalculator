@@ -108,11 +108,8 @@ function TipDisplay(props) {
                         '&.MuiButton-root': {
                             font: 'inherit',
                         },
-                        '&.selected': {
-                            backgroundColor: 'hsl(172, 67%, 45%)',
-                        },
                         '&:hover': {
-                            backgroundColor: 'hsla(172, 67%, 45%, .5)',
+                            backgroundColor: 'hsl(172, 67%, 45%)',
                         }
                     }}
                 >
