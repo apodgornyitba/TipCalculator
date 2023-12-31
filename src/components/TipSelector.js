@@ -77,6 +77,7 @@ function TipSelector() {
                 marginTop: '-20px',
                 '& p': {
                     color: 'hsl(184, 14%, 56%)',
+                    marginBottom: '5px',
                 },
                 '& .MuiInputBase-root': {
                     backgroundColor: 'hsl(189, 41%, 97%)',
@@ -94,112 +95,126 @@ function TipSelector() {
                 },
             }}
         >
-            <p>Bill</p>
-            <TextField
-                sx={{
-                    '& .MuiInputBase-input': {
-                        textAlign: 'right',
-                        marginRight: '5px',
-                        padding: '5px',
-                        fontSize: '24px',
-                    },
-                }}
-                placeholder="0"
-                type="text"
-                value={billValue}
-                onChange={handleBillChange}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                InputProps={{
-                    startAdornment: <img alt="Icon of a dollar sign" src={dollar}/>
-                }}
-            />
-            <p>Select Tip %</p>
             <Box
                 sx={{
-                    display: 'flex',
+                    marginBottom: '30px',
                 }}
             >
-                <TipButton
-                    percentage={"5%"}
-                    isSelected={selectedPercentage === 5}
-                    handleClick={() => handleButtonClick(5)}
-                />
-                <TipButton
-                    percentage={"10%"}
-                    isSelected={selectedPercentage === 10}
-                    handleClick={() => handleButtonClick(10)}
-                />
-                <TipButton
-                    percentage={"15%"}
-                    isSelected={selectedPercentage === 15}
-                    handleClick={() => handleButtonClick(15)}
-                />
-            </Box>
-            <Box
-                sx={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                }}
-            >
-                <TipButton
-                    percentage={"25%"}
-                    isSelected={selectedPercentage === 25}
-                    handleClick={() => handleButtonClick(25)}
-                />
-                <TipButton
-                    percentage={"50%"}
-                    isSelected={selectedPercentage === 50}
-                    handleClick={() => handleButtonClick(50)}
-                />
+                <p>Bill</p>
                 <TextField
                     sx={{
-                        marginLeft: '5px',
-                        maxWidth: '100px',
-                        minHeight: '40px',
                         '& .MuiInputBase-input': {
-                            padding: '5px',
                             textAlign: 'right',
                             marginRight: '5px',
-                            fontSize: '20px',
+                            padding: '5px',
+                            fontSize: '24px',
                         },
                     }}
-                    placeholder="Custom"
+                    placeholder="0"
                     type="text"
-                    inputProps={{
-                        pattern: '[0-9]*',
-                        title: 'Enter a number between 0 and 100',
-                    }}
-                    value={percentageValue}
-                    onChange={handlePercentageChange}
+                    value={billValue}
+                    onChange={handleBillChange}
                     onFocus={handleFocus}
                     onBlur={handleBlur}
+                    InputProps={{
+                        startAdornment: <img alt="Icon of a dollar sign" src={dollar}/>
+                    }}
                 />
             </Box>
-            <p>Number of People</p>
-            <TextField
+            <Box
                 sx={{
-                    '& .MuiInputBase-input': {
-                        textAlign: 'right',
-                        marginRight: '5px',
-                        padding: '5px',
-                        fontSize: '24px',
-                        borderColor: peopleError ? 'red' : '',
-                    },
+                    marginBottom: '30px',
                 }}
-                InputProps={{
-                    startAdornment: <img alt="Icon of a group of people" src={person}/>
-                }}
-                placeholder="0"
-                type="text"
-                value={peopleValue}
-                onChange={handleNumberofPeopleChange}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                error={!!peopleError} // Pass the error state to the TextField
-                helperText={peopleError ? 'Can\'t be 0.' : null}
-            />
+            >
+                <p>Select Tip %</p>
+                <Box
+                    sx={{
+                        display: 'flex',
+                    }}
+                >
+                    <TipButton
+                        percentage={"5%"}
+                        isSelected={selectedPercentage === 5}
+                        handleClick={() => handleButtonClick(5)}
+                    />
+                    <TipButton
+                        percentage={"10%"}
+                        isSelected={selectedPercentage === 10}
+                        handleClick={() => handleButtonClick(10)}
+                    />
+                    <TipButton
+                        percentage={"15%"}
+                        isSelected={selectedPercentage === 15}
+                        handleClick={() => handleButtonClick(15)}
+                    />
+                </Box>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                    }}
+                >
+                    <TipButton
+                        percentage={"25%"}
+                        isSelected={selectedPercentage === 25}
+                        handleClick={() => handleButtonClick(25)}
+                    />
+                    <TipButton
+                        percentage={"50%"}
+                        isSelected={selectedPercentage === 50}
+                        handleClick={() => handleButtonClick(50)}
+                    />
+                    <TextField
+                        sx={{
+                            marginLeft: '5px',
+                            maxWidth: '100px',
+                            minHeight: '40px',
+                            '& .MuiInputBase-input': {
+                                padding: '5px',
+                                textAlign: 'right',
+                                marginRight: '5px',
+                                fontSize: '20px',
+                            },
+                        }}
+                        placeholder="Custom"
+                        type="text"
+                        inputProps={{
+                            pattern: '[0-9]*',
+                            title: 'Enter a number between 0 and 100',
+                        }}
+                        value={percentageValue}
+                        onChange={handlePercentageChange}
+                        onFocus={handleFocus}
+                        onBlur={handleBlur}
+                    />
+                </Box>
+            </Box>
+            <Box>
+                <p>Number of People</p>
+                <TextField
+                    sx={{
+                        '& .MuiInputBase-input': {
+                            textAlign: 'right',
+                            marginRight: '5px',
+                            padding: '5px',
+                            fontSize: '24px',
+                            borderColor: peopleError ? 'red' : '',
+                        },
+                    }}
+                    InputProps={{
+                        startAdornment: <img alt="Icon of a group of people" src={person}/>
+                    }}
+                    placeholder="0"
+                    type="text"
+                    value={peopleValue}
+                    onChange={handleNumberofPeopleChange}
+                    onFocus={handleFocus}
+                    onBlur={handleBlur}
+                    error={!!peopleError} // Pass the error state to the TextField
+                    helperText={peopleError ? 'Can\'t be 0.' : null}
+                />
+            </Box>
         </Box>
     );
 }
