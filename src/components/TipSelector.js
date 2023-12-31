@@ -34,7 +34,7 @@ function TipSelector({ handleTipCalculation }) {
             amountPerPerson: amountPerPerson.toFixed(2),
             tipAmountPerPerson: tipAmountPerPerson.toFixed(2),
         });
-    }, [billValue, selectedPercentage, percentageValue, peopleValue]);
+    }, [billValue, selectedPercentage, percentageValue, peopleValue, handleTipCalculation]);
 
     const handleFocus = () => {
         setIsActive(true);
