@@ -6,19 +6,28 @@ import {useState} from "react";
 
 function App() {
 
-    const [tipData, setTipData] = useState({
+    const initialTipData = {
         tipAmount: '0.00',
         totalAmount: '0.00',
         amountPerPerson: '0.00',
-        tipAmountPerPerson: '0.00',
-    });
+        tipAmountPerPerson: '0.00', // assuming you want to reset this value as well
+    };
+
+    const [tipData, setTipData] = useState(initialTipData);
+
 
     const handleTipCalculation = (calculatedValues) => {
-        // Update the state with the calculated values
         setTipData({
+            tipAmount: calculatedValues.tipAmount,
+            totalAmount: calculatedValues.totalAmount,
             amountPerPerson: calculatedValues.amountPerPerson,
             tipAmountPerPerson: calculatedValues.tipAmountPerPerson,
         });
+    };
+
+    const handleReset = () => {
+        // Reset values to their initial state
+        setTipData(initialTipData);
     };
 
     return (
@@ -48,6 +57,7 @@ function App() {
                 <TipDisplay
                     amountPerPerson={tipData.amountPerPerson}
                     tipAmountPerPerson={tipData.tipAmountPerPerson}
+                    handleReset={handleReset}
                 />
             </Card>
         </div>

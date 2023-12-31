@@ -2,7 +2,12 @@ import * as React from "react";
 import {Box, Button, Card} from "@mui/material";
 
 function TipDisplay(props) {
-    const {amountPerPerson, tipAmountPerPerson} = props;
+    const {amountPerPerson, tipAmountPerPerson, handleReset} = props;
+
+    const handleResetClick = () => {
+        // Call the handleReset function passed as a prop to reset values
+        handleReset();
+    };
 
     return (
         <Card
@@ -92,6 +97,7 @@ function TipDisplay(props) {
             >
 
                 <Button
+                    onClick={handleResetClick}
                     sx={{
                         backgroundColor: 'hsla(172, 67%, 45%, .2)',
                         color: 'hsl(183, 100%, 15%)',
