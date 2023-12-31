@@ -1,11 +1,11 @@
 import * as React from "react";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Box, TextField} from "@mui/material";
 import TipButton from "./TipButton";
 import dollar from "../images/icon-dollar.svg";
 import person from "../images/icon-person.svg";
 
-function TipSelector() {
+function TipSelector({ handleTipCalculation }) {
 
     const [percentageValue, setPercentageValue] = useState('');
     const [billValue, setBillValue] = useState('');
@@ -14,6 +14,27 @@ function TipSelector() {
     const [, setIsCustomSelected] = useState(false);
     const [selectedPercentage, setSelectedPercentage] = useState(null);
     const [peopleError, setPeopleError] = useState(null);
+
+    useEffect(() => {
+        // Convert percentageValue to a decimal for calculations
+        const tipPercentage = selectedPercentage
+            ? selectedPercentage / 100
+            : percentageValue / 100;
+
+        // Calculate tip, total amount, and amount per person
+        const tipAmount = billValue * tipPercentage;
+        const totalAmount = parseFloat(billValue) + tipAmount;
+        const amountPerPerson = (peopleValue && peopleValue > 0) ? totalAmount / peopleValue : 0;
+        const tipAmountPerPerson = (peopleValue && peopleValue > 0) ? tipAmount / peopleValue : 0;
+
+        // Pass the calculated values to the parent component or update state accordingly
+        // For simplicity, I assume you have a function handleTipCalculation in your parent component
+        // that takes care of updating the TipDisplay component with the calculated values.
+        handleTipCalculation({
+            amountPerPerson: amountPerPerson.toFixed(2),
+            tipAmountPerPerson: tipAmountPerPerson.toFixed(2),
+        });
+    }, [billValue, selectedPercentage, percentageValue, peopleValue]);
 
     const handleFocus = () => {
         setIsActive(true);

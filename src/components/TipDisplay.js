@@ -2,7 +2,7 @@ import * as React from "react";
 import {Box, Button, Card} from "@mui/material";
 
 function TipDisplay(props) {
-    const {tipAmount = '0.00', totalAmount = '0.00'} = props;
+    const {amountPerPerson, tipAmountPerPerson} = props;
 
     return (
         <Card
@@ -47,7 +47,7 @@ function TipDisplay(props) {
                         color: 'hsl(172, 67%, 45%)',
                     }}
                 >
-                    ${tipAmount}
+                    ${tipAmountPerPerson}
                 </p>
             </Box>
 
@@ -78,7 +78,7 @@ function TipDisplay(props) {
                         color: 'hsl(172, 67%, 45%)',
                     }}
                 >
-                    ${totalAmount}
+                    ${amountPerPerson}
                 </p>
             </Box>
             <Box

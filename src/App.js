@@ -2,8 +2,24 @@ import './App.css';
 import {Box, Card} from "@mui/material";
 import TipSelector from "./components/TipSelector";
 import TipDisplay from "./components/TipDisplay";
+import {useState} from "react";
 
 function App() {
+
+    const [tipData, setTipData] = useState({
+        tipAmount: '0.00',
+        totalAmount: '0.00',
+        amountPerPerson: '0.00',
+        tipAmountPerPerson: '0.00',
+    });
+
+    const handleTipCalculation = (calculatedValues) => {
+        // Update the state with the calculated values
+        setTipData({
+            amountPerPerson: calculatedValues.amountPerPerson,
+            tipAmountPerPerson: calculatedValues.tipAmountPerPerson,
+        });
+    };
 
     return (
         <div className="App">
@@ -28,8 +44,11 @@ function App() {
                       boxShadow: '10px 15px 20px hsla(172, 67%, 45%, .2)',
                   }}
             >
-                <TipSelector/>
-                <TipDisplay/>
+                <TipSelector handleTipCalculation={handleTipCalculation} />
+                <TipDisplay
+                    amountPerPerson={tipData.amountPerPerson}
+                    tipAmountPerPerson={tipData.tipAmountPerPerson}
+                />
             </Card>
         </div>
     );
