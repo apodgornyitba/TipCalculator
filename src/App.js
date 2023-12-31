@@ -2,7 +2,7 @@ import './App.css';
 import {Box, Card} from "@mui/material";
 import TipSelector from "./components/TipSelector";
 import TipDisplay from "./components/TipDisplay";
-import {useState} from "react";
+import {useCallback, useState} from "react";
 
 function App() {
 
@@ -16,14 +16,14 @@ function App() {
     const [tipData, setTipData] = useState(initialTipData);
 
 
-    const handleTipCalculation = (calculatedValues) => {
+    const handleTipCalculation = useCallback((calculatedValues) => {
         setTipData({
             tipAmount: calculatedValues.tipAmount,
             totalAmount: calculatedValues.totalAmount,
             amountPerPerson: calculatedValues.amountPerPerson,
             tipAmountPerPerson: calculatedValues.tipAmountPerPerson,
         });
-    };
+    }, []);
 
     const handleReset = () => {
         // Reset values to their initial state

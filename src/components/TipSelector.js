@@ -5,7 +5,7 @@ import TipButton from "./TipButton";
 import dollar from "../images/icon-dollar.svg";
 import person from "../images/icon-person.svg";
 
-function TipSelector({handleTipCalculation, handleReset}) {
+function TipSelector({handleTipCalculation}) {
 
     const [percentageValue, setPercentageValue] = useState('');
     const [billValue, setBillValue] = useState('');
@@ -49,7 +49,7 @@ function TipSelector({handleTipCalculation, handleReset}) {
                 tipAmountPerPerson: tipAmountPerPerson.toFixed(2),
             });
         }
-    }, [billValue, selectedPercentage, percentageValue, peopleValue, reset]);
+    }, [billValue, selectedPercentage, percentageValue, peopleValue, reset, handleTipCalculation]);
 
     const handleFocus = () => {
         setIsActive(true);
