@@ -12,7 +12,7 @@ function TipButton(props) {
             sx={{
                 backgroundColor: 'hsl(183, 100%, 15%)',
                 color: 'hsl(189, 41%, 97%)',
-                minWidth: '130px',
+                minWidth: '100px',
                 maxHeight: '40px',
                 borderRadius: '5px',
                 margin: '5px',
@@ -25,7 +25,7 @@ function TipButton(props) {
                     color: 'hsl(183, 100%, 15%)',
                 },
                 '&:hover': {
-                    backgroundColor: 'hsl(185, 41%, 84%)',
+                    backgroundColor: 'hsla(172, 67%, 45%, .5)',
                     color: 'hsl(183, 100%, 15%)',
                 }
             }}

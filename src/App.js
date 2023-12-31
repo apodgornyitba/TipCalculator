@@ -9,7 +9,7 @@ function App() {
         <div className="App">
             <Box className="Title"
                  sx={{
-                     color: 'hsl(186, 14%, 43%)',
+                     color: 'hsla(183, 100%, 15%, .7)',
                      fontSize: '24px',
                      whiteSpace: 'pre-line',
                      letterSpacing: '8px',
@@ -21,6 +21,8 @@ function App() {
             </Box>
             <Card className="MainComponent"
                   sx={{
+                      marginTop: '80px',
+                      marginBottom: '80px',
                       backgroundColor: 'hsl(0, 0%, 100%)',
                       borderRadius: '25px',
                       boxShadow: '10px 15px 20px hsla(172, 67%, 45%, .2)',

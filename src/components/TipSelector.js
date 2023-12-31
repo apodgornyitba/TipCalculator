@@ -11,7 +11,9 @@ function TipSelector() {
     const [billValue, setBillValue] = useState('');
     const [peopleValue, setPeopleValue] = useState('');
     const [isActive, setIsActive] = useState(false);
+    const [, setIsCustomSelected] = useState(false);
     const [selectedPercentage, setSelectedPercentage] = useState(null);
+    const [peopleError, setPeopleError] = useState(null);
 
     const handleFocus = () => {
         setIsActive(true);
@@ -21,35 +23,49 @@ function TipSelector() {
         setIsActive(false);
     };
 
+    const handleButtonClick = (percentage) => {
+        // Check if the Custom TextField is empty before allowing the selection of other buttons
+        if (!percentageValue) {
+            setSelectedPercentage(percentage === selectedPercentage ? null : percentage);
+            setIsCustomSelected(false);
+        }
+    };
+
     const handleBillChange = (event) => {
         const inputValue = event.target.value;
 
         // Validate if the input is empty or a number (including decimals)
         if (/^\d*\.?\d*$/.test(inputValue) || inputValue === '') {
             setBillValue(inputValue);
+            setIsCustomSelected(false);
+        } else {
+            setIsCustomSelected(true);
         }
     }
     const handlePercentageChange = (event) => {
         const inputValue = event.target.value;
 
-        // Validate if the input is empty or a number within the range of 0 to 100
+        // Validate if the input is empty or a valid number within the range of 0 to 100
         if (inputValue === '' || (/^\d+$/.test(inputValue) && inputValue >= 0 && inputValue <= 100)) {
             setPercentageValue(inputValue);
+            setSelectedPercentage(null);
+            setIsCustomSelected(true);
+        } else {
+            setIsCustomSelected(false);
         }
-    };
-
-    const handleButtonClick = (percentage) => {
-        setSelectedPercentage(percentage === selectedPercentage ? null : percentage);
     };
 
     const handleNumberofPeopleChange = (event) => {
         const inputValue = event.target.value;
 
-        // Validate if the input is empty or a number
-        if (/^\d+$/.test(inputValue) || inputValue === '') {
+        // Validate if the input is a non-zero positive integer
+        if (/^[1-9]\d*$/.test(inputValue) || inputValue === '') {
             setPeopleValue(inputValue);
+            setPeopleError(false); // Clear any previous error
+        } else {
+            setPeopleError(true); // Set error to true
         }
-    }
+    };
 
     return (
         <Box
@@ -58,7 +74,7 @@ function TipSelector() {
                 textAlign: 'left',
                 flexDirection: 'column',
                 marginRight: '20px',
-                marginTop: '-100px',
+                marginTop: '-20px',
                 '& p': {
                     color: 'hsl(184, 14%, 56%)',
                 },
@@ -71,9 +87,9 @@ function TipSelector() {
                     borderWidth: '0px',
                 },
                 '& .Mui-focused .MuiOutlinedInput-notchedOutline': {
-                    borderWidth: isActive ? '2px' : '0px', // Border width changes when active
-                    borderColor: isActive ? 'hsl(172, 67%, 45%)' : 'transparent', // Border color changes when active
-                    padding: isActive ? '10px' : '5px', // Padding changes when active
+                    borderWidth: isActive ? '2px' : '0px',
+                    borderColor: isActive ? 'hsl(172, 67%, 45%)' : 'transparent',
+                    padding: isActive ? '10px' : '5px',
 
                 },
             }}
@@ -140,20 +156,20 @@ function TipSelector() {
                 <TextField
                     sx={{
                         marginLeft: '5px',
-                        maxWidth: '130px',
+                        maxWidth: '100px',
                         minHeight: '40px',
                         '& .MuiInputBase-input': {
                             padding: '5px',
                             textAlign: 'right',
                             marginRight: '5px',
-                            fontSize: '24px',
+                            fontSize: '20px',
                         },
                     }}
                     placeholder="Custom"
-                    type="text" // Use text type for input
+                    type="text"
                     inputProps={{
-                        pattern: '[0-9]*', // Only allow numeric input
-                        title: 'Enter a number between 0 and 100', // Error message if pattern doesn't match
+                        pattern: '[0-9]*',
+                        title: 'Enter a number between 0 and 100',
                     }}
                     value={percentageValue}
                     onChange={handlePercentageChange}
@@ -169,6 +185,7 @@ function TipSelector() {
                         marginRight: '5px',
                         padding: '5px',
                         fontSize: '24px',
+                        borderColor: peopleError ? 'red' : '',
                     },
                 }}
                 InputProps={{
@@ -180,6 +197,8 @@ function TipSelector() {
                 onChange={handleNumberofPeopleChange}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
+                error={!!peopleError} // Pass the error state to the TextField
+                helperText={peopleError ? 'Can\'t be 0.' : null}
             />
         </Box>
     );
